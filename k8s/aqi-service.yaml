@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: aqi-pulse-service
+
+spec:
+  type: NodePort
+
+  selector:
+    app: aqi-pulse
+
+  ports:
+    - protocol: TCP
+      port: 8501
+      targetPort: 8501
+      nodePort: 30001
