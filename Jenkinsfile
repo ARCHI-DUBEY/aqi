@@ -61,8 +61,8 @@ pipeline {
 
                 bat 'kubectl rollout status deployment/aqi-pulse'
             }
-        }
-    }*/
+        }*/
+    }
 
     post {
 
