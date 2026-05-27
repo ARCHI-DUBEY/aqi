@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
-        stage('Deploy Monitoring') {
+        /*stage('Deploy Monitoring') {
             steps {
                 bat 'kubectl apply -f k8s\\prometheus.yaml'
                 bat 'kubectl apply -f k8s\\grafana.yaml'
@@ -62,7 +62,7 @@ pipeline {
                 bat 'kubectl rollout status deployment/aqi-pulse'
             }
         }
-    }
+    }*/
 
     post {
 
