@@ -43,17 +43,29 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy Monitoring') {
             steps {
+                bat 'kubectl apply -f k8s\\prometheus.yaml'
+                bat 'kubectl apply -f k8s\\grafana.yaml'
+            }
+        }
+
+        stage('Deploy AQI App') {
+            steps {
+
                 bat 'kubectl apply -f k8s\\aqi-deployment.yaml'
+
                 bat 'kubectl apply -f k8s\\aqi-service.yaml'
+
                 bat 'kubectl set image deployment/aqi-pulse aqi-pulse=%DOCKER_IMAGE%:%IMAGE_TAG%'
+
                 bat 'kubectl rollout status deployment/aqi-pulse'
             }
         }
     }
 
     post {
+
         success {
             echo 'Deployment Successful'
         }
